@@ -1,51 +1,163 @@
-# Portfolio — Django (backend + frontend, one server)
+<div align="center">
 
-## Folder structure
+# 🖥️ Ayush Chandel — Developer Portfolio
+
+**A dark, code-editor-themed, phone-home-screen-style portfolio — built as a single deployable Django project.**
+
+[![Django](https://img.shields.io/badge/Django-6.1-092E20?style=flat&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![DRF](https://img.shields.io/badge/Django%20REST-Framework-red?style=flat&logo=django&logoColor=white)](https://www.django-rest-framework.org/)
+[![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](#license)
+
+[Live Demo](#) · [Report Bug](../../issues) · [Request Feature](../../issues)
+
+</div>
+
+---
+
+## 📱 About
+
+This isn't your typical scrolling portfolio. It's designed like a **phone's home screen** — status bar, app icons, a dock, and full-page "apps" for Resume, Skills, Projects, About, Internship, and Contact, all wrapped in a **dark code-editor aesthetic**.
+
+Everything — frontend, REST API, and admin panel — runs from **one Django project**. No separate frontend server, no build step. Clone it, migrate it, run it.
+
+## ✨ Features
+
+- 🎨 **Phone-style UI** — splash screen, home screen with app grid, dock navigation, and `:target`-based page routing (no JS framework needed)
+- 🌗 **Dark / light theme toggle** with `localStorage` persistence
+- ⚡ **Django REST Framework API** for Projects, Skills, and Contact messages
+- 🛡️ **Rate-limited contact form** (5 requests/hour) with honeypot spam protection
+- 📧 **Email notifications** on new contact form submissions
+- 🔧 **Admin-editable site info** — update your location and "currently learning" status straight from the Django admin, no code changes needed
+- 🖼️ Fully responsive — optimized for small phones, tablets, and desktop
+- 🗂️ Clean, self-documenting Django app structure
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | Python, Django, Django REST Framework |
+| Frontend | HTML5, CSS3 (custom properties / theming), Vanilla JavaScript |
+| Database | SQLite (dev) |
+| Admin | Django Admin |
+
+## 📂 Project Structure
+
 ```
 portfolio_backend/
 ├── manage.py
 ├── requirements.txt
 ├── core/
-│   ├── models.py              # Project, Skill, ContactMessage
+│   ├── models.py              # Project, Skill, ContactMessage, SiteInfo
 │   ├── serializers.py
 │   ├── views.py                # API views + home view
 │   ├── admin.py
 │   ├── urls.py                  # /api/... routes
 │   ├── templates/
-│   │   └── index.html          # the HTML page
+│   │   └── index.html          # the entire single-page app
 │   └── static/
 │       ├── css/style.css
-│       └── js/script.js
+│       ├── js/script.js
+│       ├── img/                # profile photo, background
+│       └── files/               # resume PDF
 └── portfolio_backend/
     ├── settings.py
     └── urls.py                  # '/' -> home page, '/api/' -> API, '/admin/' -> admin
 ```
 
-## Setup
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.10+
+- pip
+
+### Installation
+
 ```bash
+# Clone the repo
+git clone https://github.com/Ayushh555/<repo-name>.git
+cd <repo-name>
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Set up the database
+python manage.py makemigrations core
 python manage.py migrate
-python manage.py seed_data          # loads sample projects/skills
-python manage.py createsuperuser    # create your admin login
+
+# Create an admin login
+python manage.py createsuperuser
+
+# Run the dev server
 python manage.py runserver
 ```
 
-Open http://127.0.0.1:8000/  → the portfolio site itself (HTML+CSS+JS all served by Django).
-Open http://127.0.0.1:8000/admin/  → manage Projects, Skills, and read Contact Messages.
+Then open:
 
-## API Endpoints
-- GET  /api/projects/
-- GET  /api/skills/
-- POST /api/contact/   → { "name": "...", "email": "...", "message": "..." }  (rate-limited: 5/hour)
+| URL | What you'll find |
+|---|---|
+| `http://127.0.0.1:8000/` | The portfolio itself |
+| `http://127.0.0.1:8000/admin/` | Manage Projects, Skills, Site Info, and read Contact Messages |
 
-## How it fits together
-- `core/templates/index.html` is rendered by the `home` view in `core/views.py` at `/`.
-- `core/static/css/style.css` and `core/static/js/script.js` are linked from the template using
-  `{% static %}` tags, so Django serves them automatically — no separate frontend server needed.
-- `script.js` calls the API using a relative path (`/api/...`) since everything is on the same server now.
+## 🔌 API Endpoints
 
-## Before deploying
-- Set `DEBUG = False`
-- Set a real `SECRET_KEY`
-- Set `ALLOWED_HOSTS`
-- Run `python manage.py collectstatic` (for production static file serving)
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/projects/` | List all projects |
+| `GET` | `/api/skills/` | List all skills |
+| `POST` | `/api/contact/` | Submit a contact message *(rate-limited: 5/hour)* |
+
+**Contact payload:**
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "message": "Loved your portfolio!"
+}
+```
+
+## ⚙️ Environment Variables
+
+For the contact form to actually send emails, set these before running the server:
+
+```bash
+export EMAIL_HOST_USER="youraddress@gmail.com"
+export EMAIL_HOST_PASSWORD="your-16-char-app-password"   # Gmail App Password, not your login password
+export CONTACT_NOTIFY_EMAIL="ayushchandel95@gmail.com"
+```
+
+Without these, emails are simply printed to the console — handy for local development.
+
+## 🖼️ Screenshots
+
+> _Add a few screenshots or a GIF of the splash screen, home grid, and a couple of pages here._
+
+## 📦 Deployment Checklist
+
+- [ ] Set `DEBUG = False`
+- [ ] Set a real, secret `SECRET_KEY`
+- [ ] Set `ALLOWED_HOSTS`
+- [ ] Configure a production database
+- [ ] Run `python manage.py collectstatic`
+- [ ] Set the email environment variables
+
+## 👨‍💻 About Me
+
+I'm a **Python/Django developer** who learns by building and breaking things. I'm currently looking for my first full-time developer role.
+
+- 📍 Based in Himachal Pradesh, India
+- 💼 [LinkedIn](https://linkedin.com/in/ayush-chandel-a2b726252)
+- 🐙 [GitHub](https://github.com/Ayushh555)
+- ✉️ ayushchandel95@gmail.com
+
+## 📄 License
+
+This project is open source. Feel free to fork it and make it your own — just swap out the content for yours!
+
+---
+
+<div align="center">
+
+Built with 🐍 and ☕ by **Ayush Chandel**
+
+</div>
