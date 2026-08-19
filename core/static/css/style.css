@@ -210,6 +210,7 @@ body.entered #home { display: block; }
 .icon-box.skills { color: var(--blue); }
 .icon-box.projects { color: var(--orange); }
 .icon-box.github { color: var(--text); }
+.icon-box.linkedin { color: #0A66C2; }
 .icon-box.about { color: var(--purple); }
 .icon-box.internship { color: var(--red); }
 .icon-box.contact { color: var(--blue); }
