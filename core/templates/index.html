@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){}
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayush Chandel — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+</head>
+<body>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span class="sb-left">
+    <span class="sb-time mono" id="sbTime">10:34</span>
+    <span class="sb-location mono">{{ site_info.location }}</span>
+  </span>
+  <span class="sb-right">
+    <a href="#resume" class="sb-icon-btn" title="Resume" aria-label="Resume">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme" title="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <svg width="16" height="11" viewBox="0 0 16 11" fill="none"><rect x="0" y="7" width="3" height="4" rx="0.5" fill="currentColor"/><rect x="4.5" y="5" width="3" height="6" rx="0.5" fill="currentColor"/><rect x="9" y="2.5" width="3" height="8.5" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor" opacity="0.4"/></svg>
+    <svg width="20" height="11" viewBox="0 0 20 11" fill="none"><rect x="0.5" y="0.5" width="17" height="10" rx="2.5" stroke="currentColor"/><rect x="18.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/><rect x="2" y="2" width="12" height="7" rx="1" fill="var(--green)"/></svg>
+    <a href="#about" class="sb-avatar" title="Ayush Chandel">
+      <img src="{% static 'img/profile.jpg' %}" alt="Ayush Chandel">
+    </a>
+  </span>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  <span class="toast-text"><b>Portfolio loaded</b> — welcome!</span>
+</div>
+
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div class="splash-clock mono" id="splashClock">10:34:23</div>
+  <div class="avatar" id="avatar">
+    <img src="{% static 'img/profile.jpg' %}" alt="Ayush Chandel">
+  </div>
+  <div class="splash-welcome">Welcome to</div>
+  <div class="splash-name">Ayush Chandel</div>
+  <div class="splash-role">Software Developer · Python / Django</div>
+  <button class="enter-btn" id="enterBtn">tap to enter →</button>
+</div>
+
+<!-- HOME SCREEN -->
+<div id="home">
+  <div class="home-clock mono" id="homeClock">10:34</div>
+  <div class="home-date mono" id="homeDate">MON · 18 AUG 2026</div>
+
+  <div class="app-grid">
+    <a class="app-icon" href="#resume">
+      <span class="icon-box resume"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+      <span class="app-label">Resume</span>
+    </a>
+    <a class="app-icon" href="#skills">
+      <span class="icon-box skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+      <span class="app-label">Skills</span>
+    </a>
+    <a class="app-icon" href="#projects">
+      <span class="icon-box projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+      <span class="app-label">Projects</span>
+    </a>
+    <a class="app-icon" href="https://github.com/Ayushh555" target="_blank" rel="noopener">
+      <span class="icon-box github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.69-1.28-1.69-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.68 1.25 3.34.96.1-.75.4-1.25.73-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.44-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></span>
+      <span class="app-label">GitHub</span>
+    </a>
+    <a class="app-icon" href="#about">
+      <span class="icon-box about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <span class="app-label">About</span>
+    </a>
+    <a class="app-icon" href="#internship">
+      <span class="icon-box internship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><line x1="2" y1="13" x2="22" y2="13"/></svg></span>
+      <span class="app-label">Internship</span>
+    </a>
+    <a class="app-icon" href="#contact">
+      <span class="icon-box contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 7 12 13 22 7"/></svg></span>
+      <span class="app-label">Contact</span>
+    </a>
+  </div>
+
+  <div class="availability-widget">
+    <div class="availability-status">
+      <span class="live-dot"></span>
+      <span class="availability-text mono">Open to work</span>
+    </div>
+    <p class="availability-desc">Looking for full-time or internship roles in backend development — Python, Django, DRF.</p>
+    <a href="mailto:ayushchandel95@gmail.com" class="availability-cta mono">get in touch →</a>
+  </div>
+
+  <div class="info-widget">
+    <span class="info-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    </span>
+    <div class="info-text">
+      <div class="info-label mono">Currently learning</div>
+      <div class="info-value">{{ site_info.currently_learning }}</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+  <div class="container">
+    <a href="#home" class="back-link mono">← home</a>
+    <div class="file-tab">about<span class="ext">.md</span></div>
+    <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;border:2px solid var(--border);position:relative;margin-bottom:16px;">
+      <img src="{% static 'img/profile.jpg' %}" alt="Ayush Chandel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <h2>About<span>Who I am, what I do</span></h2>
+    <div class="about-text">
+      <p>I'm a Python/Django developer who learns by building and breaking things — mostly in that order. I specialize in backend development with Django REST Framework, and I'm comfortable across the stack when a project needs it.</p>
+      <p>Currently sharpening my JavaScript fundamentals and shipping side projects to GitHub while I look for my first full-time developer role.</p>
+      <div class="stack-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Django</span>
+        <span class="tag">Django REST Framework</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">Git</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-title mono">education</div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--purple)"></div>
+          <div class="timeline-body">
+            <div class="timeline-role">B.Tech, Computer Science Engineering <span class="timeline-org">— Pandoga, Himachal Pradesh</span></div>
+            <p>2022 – 2026 · CGPA 7.3</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--orange)"></div>
+          <div class="timeline-body">
+            <div class="timeline-role">Class X <span class="timeline-org">— G.S.S.S Bhakra, HPBOSE Board</span></div>
+            <p>80%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNSHIP -->
+<section class="page" id="internship">
+  <div class="container">
+    <a href="#home" class="back-link mono">← home</a>
+    <div class="file-tab">internship<span class="ext">.md</span></div>
+    <h2>Internship<span>Industrial training & experience</span></h2>
+    <div class="about-text">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--green)"></div>
+          <div class="timeline-body">
+            <div class="timeline-role">Software Developer Trainee <span class="timeline-org">— Cyber Core Technologies</span></div>
+            <p>Developed web applications using Python, Django, SQL and Django ORM. Implemented authentication, CRUD operations and backend application features. Built responsive interfaces using HTML, CSS and JavaScript.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--blue)"></div>
+          <div class="timeline-body">
+            <div class="timeline-role">Software Developer Trainee <span class="timeline-org">— Meander Software Pvt. Limited</span></div>
+            <p>Gained hands-on experience in Python and OOP. Developed a Hotel Management System using Python, improving debugging and problem-solving skills.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="page" id="resume">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;text-align:center;">
+    <a href="#home" class="back-link mono" style="align-self:flex-start;">← home</a>
+    <div style="width:88px;height:88px;border-radius:20px;background:var(--panel-2);border:1px solid var(--border);position:relative;margin-bottom:10px;overflow:hidden;">
+      <img src="{% static 'img/profile.jpg' %}" alt="Ayush Chandel" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="mono" style="font-size:13px;color:var(--text-dim);margin-bottom:22px;">Resume</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <a href="{% static 'files/Ayush_Chandel_Resume.pdf' %}" target="_blank" rel="noopener" class="btn mono" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:10px 20px;border-radius:6px;background:var(--green);color:var(--bg);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        View
+      </a>
+      <a href="{% static 'files/Ayush_Chandel_Resume.pdf' %}" download="Ayush_Chandel_Resume.pdf" class="btn mono" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:10px 20px;border-radius:6px;background:var(--panel-2);color:var(--text);border:1px solid var(--border);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="page" id="skills">
+  <div class="container">
+    <a href="#home" class="back-link mono">← home</a>
+    <div class="file-tab">skills<span class="ext">.json</span></div>
+    <h2>Skills<span>The stack I use daily</span></h2>
+    <div class="skill-grid" id="skillGrid">
+      <!-- fallback static content shown until API loads; replaced by JS -->
+      <div class="skill-card" style="--fill:85%"><div class="lvl">PROFICIENT</div><div class="name">Python</div><div class="bar"><div class="bar-fill"></div></div></div>
+      <div class="skill-card" style="--fill:85%"><div class="lvl">PROFICIENT</div><div class="name">Django</div><div class="bar"><div class="bar-fill"></div></div></div>
+      <div class="skill-card" style="--fill:80%"><div class="lvl">PROFICIENT</div><div class="name">DRF</div><div class="bar"><div class="bar-fill"></div></div></div>
+      <div class="skill-card" style="--fill:60%"><div class="lvl">LEARNING</div><div class="name">JavaScript</div><div class="bar"><div class="bar-fill"></div></div></div>
+      <div class="skill-card" style="--fill:75%"><div class="lvl">COMFORTABLE</div><div class="name">HTML/CSS</div><div class="bar"><div class="bar-fill"></div></div></div>
+      <div class="skill-card" style="--fill:70%"><div class="lvl">COMFORTABLE</div><div class="name">Git/GitHub</div><div class="bar"><div class="bar-fill"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="page" id="projects">
+  <div class="container">
+    <a href="#home" class="back-link mono">← home</a>
+    <div class="file-tab">projects<span class="ext">.json</span></div>
+    <h2>Projects<span>A few things I've built</span></h2>
+    <div class="project-grid" id="projectGrid">
+      <!-- fallback static content shown until API loads; replaced by JS -->
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">Spotify Clone</span>
+          <a href="https://github.com/Ayushh555" class="project-link" target="_blank" rel="noopener">github →</a>
+        </div>
+        <p class="project-desc">A Spotify-inspired music app with a Django REST Framework backend — Artist, Album, and Song models — paired with a custom HTML/CSS frontend.</p>
+        <div class="project-tags"><span>Django</span><span>DRF</span><span>REST API</span><span>HTML/CSS</span></div>
+      </div>
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">Job Portal</span>
+          <a href="https://github.com/Ayushh555" class="project-link" target="_blank" rel="noopener">github →</a>
+        </div>
+        <p class="project-desc">An online job portal application built with Django, supporting listings and applications end-to-end.</p>
+        <div class="project-tags"><span>Django</span><span>Python</span><span>SQLite</span></div>
+      </div>
+      <div class="project">
+        <div class="project-head">
+          <span class="project-name">E-Commerce Web App</span>
+          <a href="https://github.com/Ayushh555" class="project-link" target="_blank" rel="noopener">github →</a>
+        </div>
+        <p class="project-desc">A full e-commerce application covering product listings, cart, and order flow, built on Django.</p>
+        <div class="project-tags"><span>Django</span><span>Python</span><span>Full-Stack</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+  <div class="container">
+    <a href="#home" class="back-link mono">← home</a>
+    <div class="file-tab">contact<span class="ext">.sh</span></div>
+    <h2>Contact</h2>
+    <div class="contact-links">
+      <a href="https://github.com/Ayushh555" target="_blank" rel="noopener"><span class="key">github:</span> github.com/Ayushh555</a>
+      <a href="mailto:ayushchandel95@gmail.com"><span class="key">email:</span> ayushchandel95@gmail.com</a>
+      <a href="https://linkedin.com/in/ayush-chandel-a2b726252" target="_blank" rel="noopener"><span class="key">linkedin:</span> linkedin.com/in/ayush-chandel-a2b726252</a>
+    </div>
+
+    <form id="contactForm" class="contact-form">
+      <div class="file-tab" style="margin-top:36px;">message<span class="ext">.send()</span></div>
+      <div class="form-box">
+        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+        <label class="form-label mono">name</label>
+        <input class="form-input mono" type="text" name="name" required>
+        <label class="form-label mono">email</label>
+        <input class="form-input mono" type="email" name="email" required>
+        <label class="form-label mono">message</label>
+        <textarea class="form-input mono" name="message" rows="4" required></textarea>
+        <button type="submit" class="form-submit mono">send message →</button>
+        <div id="formStatus" class="form-status mono"></div>
+      </div>
+    </form>
+  </div>
+  <footer>built by Ayush Chandel — 2026</footer>
+</section>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

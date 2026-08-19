@@ -1,0 +1,6 @@
+Still missing (never uploaded, not created for you):
+- core/static/files/Ayush_Chandel_Resume.pdf  (resume download link will 404 without it)
+- core/migrations/                             (run: python manage.py makemigrations core)
+
+Everything else (settings.py, urls.py, wsgi.py, static image) has been added.
+Delete this file once resolved.
