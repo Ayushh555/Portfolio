@@ -64,12 +64,14 @@ portfolio_backend/
     ├── settings.py
     └── urls.py                  # '/' -> home page, '/api/' -> API, '/admin/' -> admin
 ```
+## 🖼️ Screenshots
 
-## 🚀 Getting Started
+<img width="1854" height="892" alt="Screenshot_19-8-2026_13310_127 0 0 1" src="https://github.com/user-attachments/assets/871eb166-cad5-409f-8e3b-653ccac275d4" />
+<img width="457" height="290" alt="Screenshot_19-8-2026_13342_127 0 0 1" src="https://github.com/user-attachments/assets/6b609ebf-1df9-4af2-9245-682387d8f94a" />
+<img width="1135" height="923" alt="Screenshot_19-8-2026_131055_127 0 0 1" src="https://github.com/user-attachments/assets/c535794b-c81e-44c2-bb24-ff09abc194f1" />
+<img width="1127" height="761" alt="Screenshot_19-8-2026_13941_127 0 0 1" src="https://github.com/user-attachments/assets/d80f7a9d-7f09-41da-afbe-6b43470fc1b2" />
 
-### Prerequisites
-- Python 3.10+
-- pip
+```
 
 ### Installation
 
@@ -91,7 +93,7 @@ python manage.py createsuperuser
 # Run the dev server
 python manage.py runserver
 ```
-## 🖼️ Screenshots
+
 
 
 
