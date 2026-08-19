@@ -111,6 +111,6 @@ I'm a **Python/Django developer** who learns by building and breaking things. I'
 
 <div align="center">
 
-Built with 🐍  by **Ayush Chandel**
+Built 🔧 by **Ayush Chandel**
 
 </div>
