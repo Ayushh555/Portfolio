@@ -132,15 +132,6 @@ Without these, emails are simply printed to the console — handy for local deve
 
 > _Add a few screenshots or a GIF of the splash screen, home grid, and a couple of pages here._
 
-## 📦 Deployment Checklist
-
-- [ ] Set `DEBUG = False`
-- [ ] Set a real, secret `SECRET_KEY`
-- [ ] Set `ALLOWED_HOSTS`
-- [ ] Configure a production database
-- [ ] Run `python manage.py collectstatic`
-- [ ] Set the email environment variables
-
 ## 👨‍💻 About Me
 
 I'm a **Python/Django developer** who learns by building and breaking things. I'm currently looking for my first full-time developer role.
@@ -150,14 +141,11 @@ I'm a **Python/Django developer** who learns by building and breaking things. I'
 - 🐙 [GitHub](https://github.com/Ayushh555)
 - ✉️ ayushchandel95@gmail.com
 
-## 📄 License
-
-This project is open source. Feel free to fork it and make it your own — just swap out the content for yours!
 
 ---
 
 <div align="center">
 
-Built with 🐍 and ☕ by **Ayush Chandel**
+Built with 🐍  by **Ayush Chandel**
 
 </div>
