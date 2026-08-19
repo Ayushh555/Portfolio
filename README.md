@@ -91,46 +91,9 @@ python manage.py createsuperuser
 # Run the dev server
 python manage.py runserver
 ```
-
-Then open:
-
-| URL | What you'll find |
-|---|---|
-| `http://127.0.0.1:8000/` | The portfolio itself |
-| `http://127.0.0.1:8000/admin/` | Manage Projects, Skills, Site Info, and read Contact Messages |
-
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/projects/` | List all projects |
-| `GET` | `/api/skills/` | List all skills |
-| `POST` | `/api/contact/` | Submit a contact message *(rate-limited: 5/hour)* |
-
-**Contact payload:**
-```json
-{
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "message": "Loved your portfolio!"
-}
-```
-
-## ⚙️ Environment Variables
-
-For the contact form to actually send emails, set these before running the server:
-
-```bash
-export EMAIL_HOST_USER="youraddress@gmail.com"
-export EMAIL_HOST_PASSWORD="your-16-char-app-password"   # Gmail App Password, not your login password
-export CONTACT_NOTIFY_EMAIL="ayushchandel95@gmail.com"
-```
-
-Without these, emails are simply printed to the console — handy for local development.
-
 ## 🖼️ Screenshots
 
-> _Add a few screenshots or a GIF of the splash screen, home grid, and a couple of pages here._
+
 
 ## 👨‍💻 About Me
 
